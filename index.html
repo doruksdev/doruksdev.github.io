@@ -7,9 +7,9 @@
   <title>Yönlendiriliyorsunuz...</title>
   <style>
     :root {
-      --primary-color: #667eea;
-      --secondary-color: #764ba2;
-      --text-color: #ffffff;
+      --bg-start: #ffffff;
+      --bg-end: #f2f2f2;
+      --text-color: #222222;
     }
 
     * {
@@ -20,7 +20,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(to bottom right, var(--bg-start), var(--bg-end));
       color: var(--text-color);
       display: flex;
       align-items: center;
@@ -35,6 +35,14 @@
       width: 100%;
     }
 
+    .logo {
+      width: 100px;
+      height: auto;
+      margin: 0 auto 1.5rem;
+      animation: fadeIn 1.2s ease-in-out;
+      filter: brightness(0); /* siyah yapar */
+    }
+
     h1 {
       font-size: clamp(1.8rem, 5vw, 3rem);
       margin-bottom: 1rem;
@@ -46,8 +54,8 @@
     }
 
     .loader {
-      border: 6px solid rgba(255, 255, 255, 0.2);
-      border-top: 6px solid #fff;
+      border: 6px solid rgba(34, 34, 34, 0.2);
+      border-top: 6px solid var(--text-color);
       border-radius: 50%;
       width: 50px;
       height: 50px;
@@ -58,17 +66,23 @@
     a {
       display: inline-block;
       font-size: 1rem;
-      color: #fff;
+      color: var(--text-color);
       text-decoration: underline;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <img src="serhat.png" alt="Logo" class="logo">
     <h1>Yönlendiriliyorsunuz...</h1>
     <p>3 saniye içinde <strong>Serhat Doruk CV</strong> sayfasına yönlendirileceksiniz.</p>
     <div class="loader"></div>
