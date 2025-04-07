@@ -52,6 +52,7 @@ body.dark-theme{
   --container-color: #212121;
   --container-color-alt: #181616;
   --body-color: #2B2B2B;
+  --link-color: #8ecdf7; /* Yeni link rengi değişkeni */
 }
 
 /*========== Button Dark/Light ==========*/
@@ -63,10 +64,26 @@ body.dark-theme{
   color: var(--text-color);
   font-size: 1.2rem;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Improve contrast in dark theme */
+body.dark-theme .change-theme {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .change-theme:hover{
   color: var(--title-color);
+  transform: scale(1.1);
+}
+
+body.dark-theme .change-theme:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*========== Font size variables to scale cv ==========*/
@@ -88,10 +105,26 @@ body.scale-cv{
   font-size: 1.2rem;
   color: var(--text-color);
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Improve contrast in dark theme */
+body.dark-theme .generate-pdf {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .generate-pdf:hover{
   color: var(--title-color);
+  transform: scale(1.1);
+}
+
+body.dark-theme .generate-pdf:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*========== Classes modified to reduce size and print on A4 sheet ==========*/
@@ -209,6 +242,26 @@ ul{
 
 a{
   text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+/* Telefon ve mail bağlantıları için koyu temada kontrast iyileştirmesi */
+body.dark-theme .home__information a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+body.dark-theme .home__information a:hover {
+  color: #a9d9fb;
+  text-decoration-thickness: 2px;
+}
+
+/* Tüm bağlantılar için hover efekti */
+a:hover {
+  color: var(--title-color);
 }
 
 img{

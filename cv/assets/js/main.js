@@ -5,10 +5,26 @@ const showMenu = (toggleId, navId) =>{
     
     // Validate that variables exist
     if(toggle && nav){
-        toggle.addEventListener('click', ()=>{
-            // We add the show-menu class to the div tag with the nav__menu class
-            nav.classList.toggle('show-menu')
-        })
+        // Function to handle menu toggle
+        const toggleMenu = () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            // Toggle ARIA expanded state
+            toggle.setAttribute('aria-expanded', !isExpanded);
+            // Toggle menu visibility
+            nav.classList.toggle('show-menu');
+        };
+
+        // Click event listener
+        toggle.addEventListener('click', toggleMenu);
+        
+        // Keyboard event listener for accessibility
+        toggle.addEventListener('keydown', (e) => {
+            // Trigger on Enter or Space key
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
     }
 }
 showMenu('nav-toggle','nav-menu')
@@ -71,15 +87,36 @@ if (selectedTheme) {
   themeButton.classList[selectedIcon === 'bx-moon' ? 'add' : 'remove'](iconTheme)
 }
 
+// Update ARIA attributes based on theme
+const updateThemeAccessibility = () => {
+    const isDarkTheme = document.body.classList.contains(darkTheme);
+    themeButton.setAttribute('aria-checked', isDarkTheme.toString());
+    themeButton.setAttribute('title', isDarkTheme ? 'Açık temaya geç' : 'Karanlık temaya geç');
+    themeButton.setAttribute('aria-label', isDarkTheme ? 'Açık temaya geç' : 'Karanlık temaya geç');
+};
+
+// Initialize theme accessibility attributes
+updateThemeAccessibility();
+
 // Activate / deactivate the theme manually with the button
 themeButton.addEventListener('click', () => {
     // Add or remove the dark / icon theme
-    document.body.classList.toggle(darkTheme)
-    themeButton.classList.toggle(iconTheme)
+    document.body.classList.toggle(darkTheme);
+    themeButton.classList.toggle(iconTheme);
+    // Update accessibility attributes
+    updateThemeAccessibility();
     // We save the theme and the current icon that the user chose
-    localStorage.setItem('selected-theme', getCurrentTheme())
-    localStorage.setItem('selected-icon', getCurrentIcon())
-})
+    localStorage.setItem('selected-theme', getCurrentTheme());
+    localStorage.setItem('selected-icon', getCurrentIcon());
+});
+
+// Add keyboard support for theme toggle
+themeButton.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        themeButton.click();
+    }
+});
 
 
 /*==================== REDUCE THE SIZE AND PRINT ON AN A4 SHEET ====================*/ 
@@ -123,3 +160,49 @@ resumeButton.addEventListener('click', () =>{
     // 3. The .scale-cv class is removed from the body after 5 seconds to return to normal size.
     setTimeout(removeScale, 5000)
 })
+
+// Add keyboard support for PDF generation
+resumeButton.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        resumeButton.click();
+    }
+});
+
+// Add accessibility initialization on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Ensure all navigation links have appropriate focus indicators
+    const navLinks = document.querySelectorAll('.nav__link');
+    navLinks.forEach(link => {
+        link.addEventListener('focus', () => {
+            link.setAttribute('aria-current', 'false');
+        });
+    });
+    
+    // Make sure active-link has appropriate ARIA attribute
+    const updateActiveLink = () => {
+        navLinks.forEach(link => {
+            const isActive = link.classList.contains('active-link');
+            link.setAttribute('aria-current', isActive ? 'page' : 'false');
+        });
+    };
+    
+    // Call on page load and during scrolling
+    updateActiveLink();
+    window.addEventListener('scroll', updateActiveLink);
+    
+    // Make sure scroll-top is keyboard accessible
+    const scrollTop = document.getElementById('scroll-top');
+    if (scrollTop) {
+        scrollTop.setAttribute('role', 'button');
+        scrollTop.setAttribute('aria-label', 'Sayfa başına dön');
+        scrollTop.setAttribute('tabindex', '0');
+        
+        scrollTop.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        });
+    }
+});

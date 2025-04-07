@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-    <html lang="en">
+    <html lang="tr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Serhat Doruk - İnşaat Mühendisi, özgeçmiş ve kişisel bilgiler.">
+        <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
 
         <!--========== BOX ICONS ==========-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -15,7 +19,7 @@
     <body>
         <!--========== HEADER ==========-->
         <header class="l-header" id="header">
-            <nav class="nav bd-container">
+            <nav class="nav bd-container" role="navigation" aria-label="Ana menü">
                 <a href="#" class="nav__logo">Serhat Doruk</a>
 
                 <div class="nav__menu" id="nav-menu">
@@ -48,8 +52,8 @@
                     </ul>
                 </div>
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-grid-alt'></i>
+                <div class="nav__toggle" id="nav-toggle" role="button" aria-label="Menüyü aç/kapat" tabindex="0" aria-expanded="false" aria-controls="nav-menu">
+                    <i class='bx bx-grid-alt' aria-hidden="true"></i>
                 </div>
             </nav>
         </header>
@@ -62,49 +66,49 @@
                     <section class="home" id="home">
                         <div class="home__container section bd-grid">
                             <div class="home__data bd-grid">
-                                <img src="assets/img/serhat_crop.jpg" alt="" class="home__img">
+                                <img src="assets/img/serhat_crop.jpg" alt="Serhat Doruk fotoğrafı" class="home__img">
 
                                 <h1 class="home__title">SERHAT <b>DORUK</b></h1>
                                 <h3 class="home__profession">İnşaat Mühendisi</h3>
 
                                 <div>
                                     <!-- Button to download your CV saved in the pdf folder. Available for mobile -->
-                                    <a download="" href="assets/pdf/SerhatDoruk.pdf" class="home__button-movil">CV'yi İndir</a>
+                                    <a download="" href="assets/pdf/SerhatDoruk.pdf" class="home__button-movil" aria-label="Özgeçmişi PDF olarak indir">CV'yi İndir</a>
                                 </div>
                             </div>   
     
     
                             <div class="home__address bd-grid">
                                 <span class="home__information">
-                                    <i class='bx bx-map home__icon' ></i> Ortahisar / TRABZON
+                                    <i class='bx bx-map home__icon' aria-hidden="true" ></i> <span>Ortahisar / TRABZON</span>
                                 </span>
                                 <span class="home__information">
-                                    <i class='bx bx-envelope home__icon' ></i> iletisim@serhatdoruk.com
+                                    <i class='bx bx-envelope home__icon' aria-hidden="true" ></i> <a href="mailto:iletisim@serhatdoruk.com" aria-label="E-posta gönder">iletisim@serhatdoruk.com</a>
                                 </span>
                                 <span class="home__information">
-                                    <i class='bx bx-phone home__icon' ></i> TR +90 546 621 19 11
+                                    <i class='bx bx-phone home__icon' aria-hidden="true" ></i> <a href="tel:+905466211911" aria-label="Türkiye telefon numarasını ara">TR +90 546 621 19 11</a>
                                 </span>
                                 <span class="home__information">
-                                    <i class='bx bx-phone home__icon' ></i> RU +7 925 953 06 33
+                                    <i class='bx bx-phone home__icon' aria-hidden="true" ></i> <a href="tel:+79259530633" aria-label="Rusya telefon numarasını ara">RU +7 925 953 06 33</a>
                                 </span>
                                 <span class="home__information">
-                                    <i class='bx bx-world home__icon' ></i> İngilizce-Temel
+                                    <i class='bx bx-world home__icon' aria-hidden="true" ></i> <span>İngilizce-Temel</span>
                                 </span>
                                 <span class="home__information">
-                                    <i class='bx bxs-id-card home__icon' ></i> B Sınıfı
+                                    <i class='bx bxs-id-card home__icon' aria-hidden="true" ></i> <span>B Sınıfı</span>
                                 </span>
                                 <span class="home__information">
-                                    <i class='bx bx-male-female home__icon' ></i> Bekar
+                                    <i class='bx bx-male-female home__icon' aria-hidden="true" ></i> <span>Bekar</span>
                                 </span>
 
                             </div>
                         </div>
 
                         <!-- Theme change button -->
-                        <i class='bx bx-moon change-theme' title="Theme" id="theme-button"></i>
+                        <button class='bx bx-moon change-theme' title="Temayı değiştir" id="theme-button" aria-label="Tema değiştir" role="switch" aria-checked="false"></button>
 
                         <!-- Button to generate and download the pdf. Available for desktop. -->
-                        <i class='bx bx-download generate-pdf' title="Generate PDF" id="resume-button"></i>
+                        <button class='bx bx-download generate-pdf' title="PDF oluştur" id="resume-button" aria-label="Özgeçmişi PDF olarak oluştur ve indir"></button>
                     </section>
 
                     <!--========== SOCIAL ==========-->
@@ -112,8 +116,8 @@
                         <h2 class="section-title">SOSYAL MEDYA</h2>
                         
                         <div class="social__container bd-grid">
-                            <a href="https://x.com/doruksdev" target="_blank" class="social__link">
-                                <i class='bx bxl-twitter social__icon'></i>
+                            <a href="https://x.com/doruksdev" target="_blank" class="social__link" aria-label="Twitter hesabımı ziyaret et">
+                                <i class='bx bxl-twitter social__icon' aria-hidden="true"></i>
                                 @doruksdev
                             </a>
                         </div>
