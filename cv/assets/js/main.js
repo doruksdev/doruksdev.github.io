@@ -146,7 +146,28 @@ let opt = {
 }
 
 function generateResume(){
-    html2pdf(areaCv, opt);
+    let pdfOptions = { ...opt }; // Copy the original options
+    
+    try {
+        // Create a timestamp for the filename
+        const now = new Date();
+        const timestamp = now.getFullYear() + '-' +
+                        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                        String(now.getDate()).padStart(2, '0') + '_' +
+                        String(now.getHours()).padStart(2, '0') + '-' +
+                        String(now.getMinutes()).padStart(2, '0') + '-' +
+                        String(now.getSeconds()).padStart(2, '0');
+        
+        // Update options with timestamp filename
+        pdfOptions.filename = `SerhatDoruk_CV_${timestamp}.pdf`;
+    } catch (error) {
+        // If there's an error, use the default filename defined in opt
+        console.log('Error creating timestamp for filename, using default:', error);
+        // pdfOptions already has the default filename from opt
+    }
+    
+    // Generate PDF with the configured filename
+    html2pdf(areaCv, pdfOptions);
 }
 
 // When the button is clicked, it executes the three functions
